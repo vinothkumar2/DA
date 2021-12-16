@@ -1,0 +1,52 @@
+#include<iostream.h>
+#include<conio.h>
+int ne=1,min_cost=0;
+void main()
+{
+clrscr();
+int n,i,j,min,cost[20][20],a,u,b,v,source,visited[20];
+cout<<"Enter the no of matrix:\n";
+cin>>n;
+cout<<"Enter the cost of matrix:\n";
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=n;j++)
+{
+cin>>cost[i][j];
+if(cost[i][j]==0)
+cost[i][j]=999;
+}
+}
+for(i=0;i<n;i++)
+visited[i]=0;
+cout<<"Enter the root node:";
+cin>>source;
+visited[source]=1;
+cout<<"\n Minimum cost spanning tree is:\n";
+while(ne<n)
+{
+min=999;
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=n;j++)
+{
+if(cost[i][j]<min)
+if(visited[i]!=0)
+{
+min=cost[i][j];
+a=u=i;
+b=v=j;
+}
+}
+}
+if(visited[u]==0 || visited[v]==0)
+{
+cout<<"\n edge"<<ne++<<"\t("<<a<<"----->"<<b<<")"<<min;
+min_cost=min_cost+min;
+visited[b]=1;
+}
+cost[a][b]=cost[b][a]=999;
+}
+cout<<"\n Minimum cost="<<min_cost<<"\n";
+getch();
+}
